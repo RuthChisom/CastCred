@@ -98,7 +98,7 @@ contract GratitudeEconomy is ReentrancyGuard, Ownable {
      * @dev Contract constructor
      * @param _cUSDAddress Address of the cUSD token contract
      */
-    constructor(address _cUSDAddress) {
+    constructor(address _cUSDAddress) Ownable(msg.sender){
         require(_cUSDAddress != address(0), "Invalid cUSD address");
         cUSD = IERC20(_cUSDAddress);
     }
