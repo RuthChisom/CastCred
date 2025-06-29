@@ -1,6 +1,6 @@
-import '@/styles/globals.css';
+import "@/styles/globals.css";
 
-import { AppProvider } from '@/providers/AppProvider';
+import { AppProvider } from "@/providers/AppProvider";
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

@@ -17,8 +17,6 @@ import {
   Wallet,
 } from "lucide-react";
 
-import { SiFarcaster } from "react-icons/si";
-
 // Type definitions
 interface Transaction {
   transactionHash: string;
@@ -35,8 +33,6 @@ interface Post {
   farcasterHash: string;
   isTrending: boolean;
   avatar: string;
-  farcasterUrl?: string;
-  isPostedToFarcaster: boolean;
 }
 
 interface UserStats {
@@ -66,28 +62,6 @@ interface Web3Context {
   signTransaction: () => Promise<void>;
 }
 
-interface FarcasterCastResponse {
-  success: boolean;
-  cast?: {
-    hash: string;
-    author: {
-      username: string;
-      fid: number;
-    };
-    text: string;
-    timestamp: string;
-  };
-  error?: string;
-}
-
-interface FarcasterUser {
-  fid: number;
-  username: string;
-  displayName: string;
-  pfpUrl: string;
-  isConnected: boolean;
-}
-
 export default function Home(): JSX.Element {
   const {
     address,
@@ -97,6 +71,7 @@ export default function Home(): JSX.Element {
     getNFTs,
     signTransaction,
   } = useWeb3();
+  //   as Web3Context;
 
   const [cUSDLoading, setCUSDLoading] = useState<boolean>(false);
   const [nftLoading, setNFTLoading] = useState<boolean>(false);
@@ -174,13 +149,6 @@ export default function Home(): JSX.Element {
   const [selectedTab, setSelectedTab] = useState<TabType>("feed");
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Farcaster integration state
-  const [farcasterUser, setFarcasterUser] = useState<FarcasterUser | null>(
-    null
-  );
-  const [postToFarcaster, setPostToFarcaster] = useState<boolean>(true);
-  const [farcasterLoading, setFarcasterLoading] = useState<boolean>(false);
-
   // Mock data for demonstration
   const mockPosts: Post[] = [
     {
@@ -195,8 +163,6 @@ export default function Home(): JSX.Element {
       farcasterHash: "0xabc123",
       isTrending: true,
       avatar: "🌟",
-      farcasterUrl: "https://warpcast.com/sarah.eth/0xabc123",
-      isPostedToFarcaster: true,
     },
     {
       id: 2,
@@ -210,8 +176,6 @@ export default function Home(): JSX.Element {
       farcasterHash: "0xdef456",
       isTrending: false,
       avatar: "🚀",
-      farcasterUrl: "https://warpcast.com/mike.builder/0xdef456",
-      isPostedToFarcaster: true,
     },
     {
       id: 3,
@@ -225,8 +189,6 @@ export default function Home(): JSX.Element {
       farcasterHash: "0x789ghi",
       isTrending: true,
       avatar: "🎯",
-      farcasterUrl: "https://warpcast.com/alex.crypto/0x789ghi",
-      isPostedToFarcaster: true,
     },
   ];
 
@@ -250,124 +212,28 @@ export default function Home(): JSX.Element {
     }, 1500);
   };
 
-  // Farcaster integration functions
-  const connectFarcaster = async (): Promise<void> => {
-    setFarcasterLoading(true);
-    try {
-      // In a real implementation, you would use @farcaster/auth-kit or similar
-      // This is a mock implementation
-      setTimeout(() => {
-        setFarcasterUser({
-          fid: 12345,
-          username: "gratitude.user",
-          displayName: "Gratitude User",
-          pfpUrl: "https://example.com/avatar.png",
-          isConnected: true,
-        });
-        setFarcasterLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.error("Failed to connect to Farcaster:", error);
-      setFarcasterLoading(false);
-    }
-  };
-
-  const postToFarcasterNetwork = async (
-    content: string
-  ): Promise<FarcasterCastResponse> => {
-    try {
-      // In a real implementation, you would use the Farcaster API
-      // This could be done through:
-      // 1. Direct API calls to Farcaster hubs
-      // 2. Using services like Neynar API
-      // 3. Using @farcaster/hub-nodejs
-
-      const castData = {
-        text: `${content}\n\n#GratitudeEconomy #Celo #DeFi`,
-        embeds: [
-          {
-            url: `https://yourdomain.com/post/${Date.now()}`, // Link back to your app
-          },
-        ],
-      };
-
-      // Mock API response
-      const mockResponse: FarcasterCastResponse = {
-        success: true,
-        cast: {
-          hash: "0x" + Math.random().toString(16).slice(2, 10),
-          author: {
-            username: farcasterUser?.username || "user",
-            fid: farcasterUser?.fid || 12345,
-          },
-          text: castData.text,
-          timestamp: new Date().toISOString(),
-        },
-      };
-
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      return mockResponse;
-    } catch (error) {
-      return {
-        success: false,
-        error: "Failed to post to Farcaster",
-      };
-    }
-  };
-
   const createPost = async (): Promise<void> => {
     if (!newPost.trim()) return;
 
     setLoading(true);
-
-    let farcasterHash = "";
-    let farcasterUrl = "";
-    let isPostedToFarcaster = false;
-
-    // Post to Farcaster if enabled and user is connected
-    if (postToFarcaster && farcasterUser?.isConnected) {
-      try {
-        const farcasterResponse = await postToFarcasterNetwork(newPost);
-        if (farcasterResponse.success && farcasterResponse.cast) {
-          farcasterHash = farcasterResponse.cast.hash;
-          farcasterUrl = `https://warpcast.com/${farcasterResponse.cast.author.username}/${farcasterHash}`;
-          isPostedToFarcaster = true;
-        }
-      } catch (error) {
-        console.error("Failed to post to Farcaster:", error);
-        // Continue with local post creation even if Farcaster fails
-      }
-    }
-
-    // Create local post
+    // Mock post creation
     const mockNewPost: Post = {
       id: posts.length + 1,
       author: account,
-      authorName: farcasterUser?.username || "you.eth",
+      authorName: "you.eth",
       content: newPost,
       timestamp: Date.now(),
       totalTips: "0",
       tipCount: 0,
-      farcasterHash:
-        farcasterHash || "0x" + Math.random().toString(16).slice(2, 8),
+      farcasterHash: "0x" + Math.random().toString(16).slice(2, 8),
       isTrending: false,
       avatar: "✨",
-      farcasterUrl: farcasterUrl,
-      isPostedToFarcaster: isPostedToFarcaster,
     };
 
     setTimeout(() => {
       setPosts([mockNewPost, ...posts]);
       setNewPost("");
       setLoading(false);
-
-      // Update user stats
-      setUserStats((prev) => ({
-        ...prev,
-        postsCount: prev.postsCount + 1,
-      }));
     }, 1000);
   };
 
@@ -442,17 +308,6 @@ export default function Home(): JSX.Element {
             <Heart className="w-4 h-4 text-red-500" />
             <span>{post.tipCount} tips</span>
           </div>
-          {post.isPostedToFarcaster && post.farcasterUrl && (
-            <a
-              href={post.farcasterUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-1 text-purple-600 hover:text-purple-800 transition-colors"
-            >
-              <SiFarcaster />
-              <span>View on Farcaster</span>
-            </a>
-          )}
         </div>
 
         {connected && post.author !== account && (
@@ -487,6 +342,48 @@ export default function Home(): JSX.Element {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
       {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                <Heart className="w-6 h-6 text-white fill-current" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Gratitude Economy
+                </h1>
+                <p className="text-sm text-gray-600">
+                  Share daily financial gratitude, earn rewards
+                </p>
+              </div>
+            </div>
+
+            {!connected ? (
+              <button
+                onClick={connectWallet}
+                disabled={loading}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-xl font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-200 flex items-center space-x-2 disabled:opacity-50"
+              >
+                <Wallet className="w-5 h-5" />
+                <span>{loading ? "Connecting..." : "Connect Wallet"}</span>
+              </button>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <div className="text-right">
+                  <div className="text-sm font-medium text-gray-900">
+                    {balance} cUSD
+                  </div>
+                  <div className="text-xs text-gray-500">{account}</div>
+                </div>
+                <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                  <Wallet className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

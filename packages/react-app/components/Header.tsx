@@ -15,10 +15,13 @@ export default function Header() {
       setHideConnectBtn(true);
       connect({ connector: injected({ target: "metaMask" }) });
     }
-  }, []);
+  }, [connect]);
 
   return (
-    <Disclosure as="nav" className="bg-colors-primary border-b border-black">
+    <Disclosure
+      as="nav"
+      className="sticky top-0 z-50 bg-white shadow border-b border-black"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -34,25 +37,43 @@ export default function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              {/* <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Image
-                    className="block h-8 w-auto sm:block lg:block"
-                    src="/logo.svg"
-                    width="24"
-                    height="24"
+                    className="block h-18 w-auto rounded-md sm:block lg:block"
+                    src="/gratitude.png"
+                    width="44"
+                    height="44"
                     alt="Celo Logo"
                   />
                 </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
-                  >
-                    Home
-                  </a>
+                <div className="hidden sm:ml-2  sm:flex sm:space-x-8">
+                  <div className="font-bold sm:flex text-xl mt-5">
+                    Gratitude Economy
+                  </div>
+                </div>
+                <span>Share daily financial gratitude, earn rewards</span>
+              </div> */}
+
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex flex-shrink-0 items-center">
+                  <Image
+                    className="block h-19 w-auto rounded-md sm:block lg:block"
+                    src="/gratitude.png"
+                    width="44"
+                    height="44"
+                    alt="Platform Logo"
+                  />
+                </div>
+
+                <div className="hidden sm:ml-2 sm:flex sm:flex-col">
+                  <div className="font-bold text-xl">Gratitude Economy</div>
+                  <span className="text-sm text-gray-500">
+                    Share daily financial gratitude, earn rewards
+                  </span>
                 </div>
               </div>
+
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {!hideConnectBtn && (
                   <ConnectButton
