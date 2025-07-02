@@ -9,6 +9,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="fc:miniapp" content="<stringified MiniAppEmbed JSON>" />
+      {/* <!-- For backward compatibility --> */}
+      <meta name="fc:frame" content="<stringified MiniAppEmbed JSON>" />
       <body suppressHydrationWarning={true}>
         <AppProvider>{children}</AppProvider>
       </body>

@@ -109,7 +109,8 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     // load a splash screen when the app loads on farcaster
-    sdk.actions.ready();
+    // sdk.actions.ready();
+    sdk.actions.ready({ disableNativeGestures: true });
 
     getUserAddress();
   }, []);
