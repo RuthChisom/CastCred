@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useWeb3 } from "@/contexts/useWeb3";
+import { sdk } from "@farcaster/frame-sdk";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import {
@@ -107,6 +108,9 @@ export default function Home(): JSX.Element {
   const [messageSigned, setMessageSigned] = useState<boolean>(false);
 
   useEffect(() => {
+    // load a splash screen when the app loads on farcaster
+    sdk.actions.ready();
+
     getUserAddress();
   }, []);
 
