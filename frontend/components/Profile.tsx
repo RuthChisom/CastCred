@@ -1,5 +1,6 @@
 // components/Profile.tsx
 import React from "react";
+import Image from "next/image";
 import { Coins, Heart, Calendar } from "lucide-react";
 import { UserStats } from "../types";
 
@@ -40,13 +41,13 @@ const Profile: React.FC<ProfileProps> = ({ userStats }) => {
         <div className="space-y-3">
           <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
             <span className="text-sm text-gray-600">
-              Received tip on "Grateful for bonus"
+              Received tip on &quot;Grateful for bonus&quot;
             </span>
             <span className="font-medium text-green-600">+2.5 cUSD</span>
           </div>
           <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
             <span className="text-sm text-gray-600">
-              Tipped @sarah.eth's post
+              Tipped @sarah.eth&apos;s post
             </span>
             <span className="font-medium text-blue-600">-1.0 cUSD</span>
           </div>

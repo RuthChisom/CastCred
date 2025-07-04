@@ -15,6 +15,7 @@
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
+import { useMemo } from "react";
 // import WalletConnect from "@/components/WalletConnect";
 import CreatePost from "@/components/CreatePost";
 import Feed from "@/components/Feed";
@@ -58,51 +59,53 @@ export default function App() {
     null
   );
   const [postToFarcaster, setPostToFarcaster] = useState(true);
-
-  const mockPosts: Post[] = [
-    {
-      id: 1,
-      author: "0x1234...5678",
-      authorName: "sarah.eth",
-      content: "Grateful for my freelance income reaching $5K this month!",
-      timestamp: Date.now() - 3600000,
-      totalTips: "12.5",
-      tipCount: 8,
-      farcasterHash: "0xabc123",
-      isTrending: true,
-      avatar: "🌟",
-      farcasterUrl: "https://warpcast.com/sarah.eth/0xabc123",
-      isPostedToFarcaster: true,
-    },
-    {
-      id: 2,
-      author: "0x8765...4321",
-      authorName: "mike.builder",
-      content: "Thank you universe for the unexpected bonus at work!",
-      timestamp: Date.now() - 7200000,
-      totalTips: "8.2",
-      tipCount: 5,
-      farcasterHash: "0xdef456",
-      isTrending: false,
-      avatar: "🚀",
-      farcasterUrl: "https://warpcast.com/mike.builder/0xdef456",
-      isPostedToFarcaster: true,
-    },
-    {
-      id: 3,
-      author: "0x2468...1357",
-      authorName: "alex.crypto",
-      content: "Grateful for finally paying off my student loans!",
-      timestamp: Date.now() - 10800000,
-      totalTips: "15.7",
-      tipCount: 12,
-      farcasterHash: "0x789ghi",
-      isTrending: true,
-      avatar: "🎯",
-      farcasterUrl: "https://warpcast.com/alex.crypto/0x789ghi",
-      isPostedToFarcaster: true,
-    },
-  ];
+  const mockPosts = useMemo(
+    () => [
+      {
+        id: 1,
+        author: "0x1234...5678",
+        authorName: "sarah.eth",
+        content: "Grateful for my freelance income reaching $5K this month!",
+        timestamp: Date.now() - 3600000,
+        totalTips: "12.5",
+        tipCount: 8,
+        farcasterHash: "0xabc123",
+        isTrending: true,
+        avatar: "🌟",
+        farcasterUrl: "https://warpcast.com/sarah.eth/0xabc123",
+        isPostedToFarcaster: true,
+      },
+      {
+        id: 2,
+        author: "0x8765...4321",
+        authorName: "mike.builder",
+        content: "Thank you universe for the unexpected bonus at work!",
+        timestamp: Date.now() - 7200000,
+        totalTips: "8.2",
+        tipCount: 5,
+        farcasterHash: "0xdef456",
+        isTrending: false,
+        avatar: "🚀",
+        farcasterUrl: "https://warpcast.com/mike.builder/0xdef456",
+        isPostedToFarcaster: true,
+      },
+      {
+        id: 3,
+        author: "0x2468...1357",
+        authorName: "alex.crypto",
+        content: "Grateful for finally paying off my student loans!",
+        timestamp: Date.now() - 10800000,
+        totalTips: "15.7",
+        tipCount: 12,
+        farcasterHash: "0x789ghi",
+        isTrending: true,
+        avatar: "🎯",
+        farcasterUrl: "https://warpcast.com/alex.crypto/0x789ghi",
+        isPostedToFarcaster: true,
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     sdk.actions.ready();
@@ -119,7 +122,7 @@ export default function App() {
         postsCount: 12,
       });
     }
-  }, [connected]);
+  }, [connected, getUserAddress, mockPosts]);
 
   const connectWallet = async () => {
     setLoading(true);

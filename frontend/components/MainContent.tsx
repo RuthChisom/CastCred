@@ -39,9 +39,15 @@ const MainContent: React.FC<MainContentProps> = ({
         return connected ? (
           <CreatePost
             newPost={newPost}
-            onPostChange={onPostChange}
-            onCreatePost={onCreatePost}
+            setNewPost={onPostChange}
+            // ✅ match the expected prop name
+
+            createPost={onCreatePost}
+            // ✅ match the expected prop name
+
             loading={loading}
+            connected={connected}
+            connectWallet={onConnectWallet}
           />
         ) : (
           <WalletConnect

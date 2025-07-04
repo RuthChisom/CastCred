@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import Image from "next/image";
 import { loadGoogleFont, loadImage } from "@/lib/og-utils";
 import { ImageResponse } from "next/og";
 
@@ -57,7 +58,23 @@ export async function GET(
           }}
         >
           {/* Render the logo image */}
-          <img
+
+          <Image
+            src={`data:image/png; base64, ${Buffer.from(logoImage).toString(
+              "base64"
+            )}`}
+            alt="Logo"
+            width={100}
+            height={100}
+            style={{
+              marginBottom: "20px",
+              borderRadius: "10px",
+              objectFit: "cover",
+            }}
+            unoptimized
+          />
+
+          {/* <img
             src={`data:image/png;base64,${Buffer.from(logoImage).toString(
               "base64"
             )}`}
@@ -66,7 +83,7 @@ export async function GET(
               marginBottom: "20px",
               borderRadius: "10px",
             }}
-          />
+          /> */}
           {/* Display the example ID with custom styling */}
           <div
             style={{
