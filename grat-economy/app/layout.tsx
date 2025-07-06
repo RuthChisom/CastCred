@@ -3,6 +3,8 @@ import "@coinbase/onchainkit/styles.css";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import { sdk } from "@farcaster/frame-sdk";
+import { useEffect } from "react";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -10,6 +12,11 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
+  // call the ready to load the mini app
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
+
   const URL = process.env.NEXT_PUBLIC_URL;
   return {
     title: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
