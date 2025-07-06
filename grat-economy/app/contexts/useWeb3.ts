@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import StableTokenABI from "./cusd-abi.json";
 import MinipayNFTABI from "./minipay-nft.json";
 import {
@@ -23,7 +23,8 @@ const MINIPAY_NFT_CONTRACT = "0xE8F4699baba6C86DA9729b1B0a1DA1Bd4136eFeF"; // Te
 export const useWeb3 = () => {
   const [address, setAddress] = useState<string | null>(null);
 
-  const getUserAddress = async () => {
+  const getUserAddress = useCallback(async () => {
+    // fetch address logic
     if (typeof window !== "undefined" && window.ethereum) {
       const walletClient = createWalletClient({
         transport: custom(window.ethereum),
@@ -33,7 +34,9 @@ export const useWeb3 = () => {
       const [address] = await walletClient.getAddresses();
       setAddress(address);
     }
-  };
+  }, []);
+
+  // const getUserAddress = async () => {};
 
   const sendCUSD = async (to: string, amount: string) => {
     const walletClient = createWalletClient({
