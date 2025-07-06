@@ -63,8 +63,8 @@ The Gratitude Economy platform runs on a secure and open smart contract on the C
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/gratitude-economy.git
-   cd gratitude-economy
+   git clone https://github.com/Moses-main/grat-economy.git
+   cd grat-economy
    ```
 
 2. **Install dependencies**
