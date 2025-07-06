@@ -1,9 +1,12 @@
+"use client";
+
 import "./theme.css";
 import "@coinbase/onchainkit/styles.css";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import { sdk } from "@farcaster/frame-sdk";
+import { useEffect } from "react";
 
 export const viewport: Viewport = {
   width: "device-width",
