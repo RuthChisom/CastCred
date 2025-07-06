@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+// import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 // import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -29,7 +29,7 @@ export default function Header() {
       as="nav"
       className="sticky top-0 z-50 bg-white shadow border-b border-black"
     >
-      {({ open }) => (
+      {() => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 justify-between">
