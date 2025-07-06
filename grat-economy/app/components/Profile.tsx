@@ -1,6 +1,6 @@
 // components/Profile.tsx
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { Coins, Heart, Calendar } from "lucide-react";
 import { UserStats } from "../types/index";
 

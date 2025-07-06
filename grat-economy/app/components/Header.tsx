@@ -6,6 +6,13 @@ import { useEffect, useState } from "react";
 import { useConnect } from "wagmi";
 import { injected } from "wagmi/connectors";
 
+import {
+  ConnectWallet,
+  // Wallet,
+  // WalletDropdown,
+  // WalletDropdownDisconnect,
+} from "@coinbase/onchainkit/wallet";
+
 export default function Header() {
   const [hideConnectBtn, setHideConnectBtn] = useState(false);
   const { connect } = useConnect();
@@ -74,16 +81,16 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 hide flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {!hideConnectBtn && (
-                  <ConnectButton
-                    showBalance={{
-                      smallScreen: true,
-                      largeScreen: false,
-                    }}
+                  <ConnectWallet
+                  // showBalance={{
+                  //   smallScreen: true,
+                  //   largeScreen: false,
+                  // }}
                   />
                 )}
-              </div> */}
+              </div>
             </div>
           </div>
 

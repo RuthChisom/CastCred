@@ -42,7 +42,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-background">
+      {/* <body className="bg-background"> */}
+      <body suppressHydrationWarning={true} className="bg-background">
         <Providers>{children}</Providers>
       </body>
     </html>

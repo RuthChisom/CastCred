@@ -3,21 +3,15 @@
 import {
   useMiniKit,
   useAddFrame,
-  useOpenUrl,
+  // useOpenUrl,
 } from "@coinbase/onchainkit/minikit";
-import {
-  Name,
-  Identity,
-  Address,
-  Avatar,
-  EthBalance,
-} from "@coinbase/onchainkit/identity";
-import {
-  ConnectWallet,
-  Wallet,
-  WalletDropdown,
-  WalletDropdownDisconnect,
-} from "@coinbase/onchainkit/wallet";
+// import {
+//   Name,
+//   Identity,
+//   Address,
+//   Avatar,
+//   EthBalance,
+// } from "@coinbase/onchainkit/identity";
 
 import Sidebar from "./components/Sidebar";
 // import WalletConnect from "@/components/WalletConnect";
@@ -32,23 +26,27 @@ import {
   FarcasterUser,
   FarcasterCastResponse,
 } from "./types";
-import { Coins, Heart, Calendar, Send, TrendingUp, Users } from "lucide-react";
+import { Coins, Heart, Calendar, Users } from "lucide-react";
 // import { SiFarcaster } from "react-icons/si";
 import Header from "./components/Header";
 
 import { useEffect, useMemo, useState, useCallback } from "react";
-import { Button } from "./components/DemoComponents";
-import { Icon } from "./components/DemoComponents";
-import { Home } from "./components/DemoComponents";
-import { Features } from "./components/DemoComponents";
+// import { Button } from "./components/DemoComponents";
+// import { Icon } from "./components/DemoComponents";
+// import { Home } from "./components/DemoComponents";
+// import { Features } from "./components/DemoComponents";
 
 export default function App() {
-  const { setFrameReady, isFrameReady, context } = useMiniKit();
+  const {
+    setFrameReady,
+    isFrameReady,
+    //  context
+  } = useMiniKit();
   const [frameAdded, setFrameAdded] = useState(false);
-  const [activeTab, setActiveTab] = useState("home");
+  // const [activeTab, setActiveTab] = useState("home");
 
   const addFrame = useAddFrame();
-  const openUrl = useOpenUrl();
+  // const openUrl = useOpenUrl();
 
   useEffect(() => {
     if (!isFrameReady) {
@@ -61,40 +59,40 @@ export default function App() {
     setFrameAdded(Boolean(frameAdded));
   }, [addFrame]);
 
-  const saveFrameButton = useMemo(() => {
-    if (context && !context.client.added) {
-      return (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleAddFrame}
-          className="text-[var(--app-accent)] p-4"
-          icon={<Icon name="plus" size="sm" />}
-        >
-          Save Frame
-        </Button>
-      );
-    }
+  // const saveFrameButton = useMemo(() => {
+  //   if (context && !context.client.added) {
+  //     return (
+  //       <Button
+  //         variant="ghost"
+  //         size="sm"
+  //         onClick={handleAddFrame}
+  //         className="text-[var(--app-accent)] p-4"
+  //         icon={<Icon name="plus" size="sm" />}
+  //       >
+  //         Save Frame
+  //       </Button>
+  //     );
+  //   }
 
-    if (frameAdded) {
-      return (
-        <div className="flex items-center space-x-1 text-sm font-medium text-[#0052FF] animate-fade-out">
-          <Icon name="check" size="sm" className="text-[#0052FF]" />
-          <span>Saved</span>
-        </div>
-      );
-    }
+  //   if (frameAdded) {
+  //     return (
+  //       <div className="flex items-center space-x-1 text-sm font-medium text-[#0052FF] animate-fade-out">
+  //         <Icon name="check" size="sm" className="text-[#0052FF]" />
+  //         <span>Saved</span>
+  //       </div>
+  //     );
+  //   }
 
-    return null;
-  }, [context, frameAdded, handleAddFrame]);
+  //   return null;
+  // }, [context, frameAdded, handleAddFrame]);
 
   const {
-    address,
+    // address,
     getUserAddress,
-    sendCUSD,
-    mintMinipayNFT,
-    getNFTs,
-    signTransaction,
+    // sendCUSD,
+    // mintMinipayNFT,
+    // getNFTs,
+    // signTransaction,
   } = useWeb3();
 
   const [connected, setConnected] = useState(false);
@@ -176,7 +174,7 @@ export default function App() {
         postsCount: 12,
       });
     }
-  }, [connected, getUserAddress, mockPosts]);
+  }, [connected, getUserAddress]);
 
   const connectWallet = async () => {
     setLoading(true);
