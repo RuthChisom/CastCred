@@ -1,3 +1,5 @@
+"use client";
+
 function withValidProperties(
   properties: Record<string, undefined | string | string[]>,
 ) {
