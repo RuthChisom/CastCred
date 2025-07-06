@@ -51,7 +51,7 @@ const PostCard: React.FC<PostCardProps> = ({
 
       <p className="text-gray-800 mb-4 leading-relaxed">{post.content}</p>
 
-      <div className="flex items-center justify-between">
+      {/* <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4 text-sm text-gray-600">
           <div className="flex items-center space-x-1">
             <Coins className="w-4 h-4 text-green-500" />
@@ -87,6 +87,49 @@ const PostCard: React.FC<PostCardProps> = ({
               onClick={() => onTipPost(post.id, 1)}
               disabled={loading}
               className="bg-gradient-to-r from-purple-400 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-medium hover:from-purple-500 hover:to-pink-600 transition-all duration-200 disabled:opacity-50"
+            >
+              Tip 1 cUSD
+            </button>
+          </div>
+        )}
+      </div> */}
+
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600">
+          <div className="flex items-center space-x-1 text-xs sm:text-sm">
+            <Coins className="w-3 h-3 sm:w-4 sm:h-4 text-green-500" />
+            <span>{post.totalTips} cUSD</span>
+          </div>
+          <div className="flex items-center space-x-1 text-xs sm:text-sm">
+            <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
+            <span>{post.tipCount} tips</span>
+          </div>
+          {post.isPostedToFarcaster && post.farcasterUrl && (
+            <a
+              href={post.farcasterUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 text-purple-600 hover:text-purple-800 transition-colors text-xs sm:text-sm"
+            >
+              <SiFarcaster className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span>View on Farcaster</span>
+            </a>
+          )}
+        </div>
+
+        {connected && post.author !== account && (
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => onTipPost(post.id, 0.5)}
+              disabled={loading}
+              className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover:from-green-500 hover:to-blue-600 transition-all duration-200 disabled:opacity-50"
+            >
+              Tip 0.5 cUSD
+            </button>
+            <button
+              onClick={() => onTipPost(post.id, 1)}
+              disabled={loading}
+              className="bg-gradient-to-r from-purple-400 to-pink-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover:from-purple-500 hover:to-pink-600 transition-all duration-200 disabled:opacity-50"
             >
               Tip 1 cUSD
             </button>

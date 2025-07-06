@@ -81,7 +81,7 @@ export default function Header() {
                 </div>
               </div>
 
-              <div className="absolute inset-y-0 right-0 hide flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 hidden md:hidden flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {!hideConnectBtn && (
                   <ConnectWallet
                   // showBalance={{
