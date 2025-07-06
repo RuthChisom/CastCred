@@ -42,10 +42,10 @@ export default function App() {
     isFrameReady,
     //  context
   } = useMiniKit();
-  const [frameAdded, setFrameAdded] = useState(false);
+  // const [frameAdded, setFrameAdded] = useState(false);
   // const [activeTab, setActiveTab] = useState("home");
 
-  const addFrame = useAddFrame();
+  // const addFrame = useAddFrame();
   // const openUrl = useOpenUrl();
 
   useEffect(() => {
@@ -54,10 +54,10 @@ export default function App() {
     }
   }, [setFrameReady, isFrameReady]);
 
-  const handleAddFrame = useCallback(async () => {
-    const frameAdded = await addFrame();
-    setFrameAdded(Boolean(frameAdded));
-  }, [addFrame]);
+  // const handleAddFrame = useCallback(async () => {
+  //   const frameAdded = await addFrame();
+  //   setFrameAdded(Boolean(frameAdded));
+  // }, [addFrame]);
 
   // const saveFrameButton = useMemo(() => {
   //   if (context && !context.client.added) {
@@ -107,10 +107,8 @@ export default function App() {
   const [newPost, setNewPost] = useState("");
   const [selectedTab, setSelectedTab] = useState<TabType>("feed");
   const [loading, setLoading] = useState(false);
-  const [farcasterUser, setFarcasterUser] = useState<FarcasterUser | null>(
-    null,
-  );
-  const [postToFarcaster, setPostToFarcaster] = useState(true);
+  const [farcasterUser] = useState<FarcasterUser | null>(null);
+  const [postToFarcaster] = useState(true);
   const mockPosts = useMemo(
     () => [
       {
