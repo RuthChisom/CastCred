@@ -2,7 +2,7 @@
 
 import {
   useMiniKit,
-  useAddFrame,
+  // useAddFrame,
   // useOpenUrl,
 } from "@coinbase/onchainkit/minikit";
 // import {
@@ -30,7 +30,12 @@ import { Coins, Heart, Calendar, Users } from "lucide-react";
 // import { SiFarcaster } from "react-icons/si";
 import Header from "./components/Header";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  //  useCallback
+} from "react";
 // import { Button } from "./components/DemoComponents";
 // import { Icon } from "./components/DemoComponents";
 // import { Home } from "./components/DemoComponents";
