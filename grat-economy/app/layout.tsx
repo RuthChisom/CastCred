@@ -1,5 +1,3 @@
-"use client";
-
 import "./theme.css";
 import "@coinbase/onchainkit/styles.css";
 import type { Metadata, Viewport } from "next";
@@ -15,9 +13,8 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   // call the ready to load the mini app
-  useEffect(() => {
-    sdk.actions.ready();
-  }, []);
+
+  sdk.actions.ready();
 
   const URL = process.env.NEXT_PUBLIC_URL;
 
