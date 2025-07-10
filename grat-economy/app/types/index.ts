@@ -3,6 +3,21 @@ export interface Transaction {
   transactionHash: string;
 }
 
+// export interface Post {
+//   id: number;
+//   author: string;
+//   authorName: string;
+//   content: string;
+//   timestamp: number;
+//   totalTips: string;
+//   tipCount: number;
+//   farcasterHash: string;
+//   isTrending: boolean;
+//   avatar: string;
+//   farcasterUrl?: string;
+//   isPostedToFarcaster: boolean;
+// }
+
 export interface Post {
   id: number;
   author: string;
@@ -16,6 +31,10 @@ export interface Post {
   avatar: string;
   farcasterUrl?: string;
   isPostedToFarcaster: boolean;
+
+  // 🔽 NEW FIELDS
+  mediaUrl?: string;
+  mediaType?: "image" | "video" | "string";
 }
 
 export interface UserStats {

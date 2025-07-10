@@ -12,7 +12,7 @@ import {
 //   Avatar,
 //   EthBalance,
 // } from "@coinbase/onchainkit/identity";
-import { useViewProfile } from "@coinbase/onchainkit/minikit";
+// import { useViewProfile } from "@coinbase/onchainkit/minikit";
 import Sidebar from "./components/Sidebar";
 // import WalletConnect from "@/components/WalletConnect";
 import CreatePost from "./components/CreatePost";
@@ -43,12 +43,12 @@ import {
 
 export default function App() {
   // Add the hook
-  const viewProfile = useViewProfile();
+  // const viewProfile = useViewProfile();
 
-  // Add the handler function
-  const handleViewProfile = () => {
-    viewProfile();
-  };
+  // // Add the handler function
+  // const handleViewProfile = () => {
+  //   viewProfile();
+  // };
 
   const {
     setFrameReady,
@@ -122,6 +122,54 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [farcasterUser] = useState<FarcasterUser | null>(null);
   const [postToFarcaster] = useState(true);
+  // const mockPosts = useMemo(
+  //   () => [
+  //     {
+  //       id: 1,
+  //       author: "0x1234...5678",
+  //       authorName: "sarah.eth",
+  //       content: "Grateful for my freelance income reaching $5K this month!",
+  //       timestamp: Date.now() - 3600000,
+  //       totalTips: "12.5",
+  //       tipCount: 8,
+  //       farcasterHash: "0xabc123",
+  //       isTrending: true,
+  //       avatar: "🌟",
+  //       farcasterUrl: "https://warpcast.com/sarah.eth/0xabc123",
+  //       isPostedToFarcaster: true,
+  //     },
+  //     {
+  //       id: 2,
+  //       author: "0x8765...4321",
+  //       authorName: "mike.builder",
+  //       content: "Thank you universe for the unexpected bonus at work!",
+  //       timestamp: Date.now() - 7200000,
+  //       totalTips: "8.2",
+  //       tipCount: 5,
+  //       farcasterHash: "0xdef456",
+  //       isTrending: false,
+  //       avatar: "🚀",
+  //       farcasterUrl: "https://warpcast.com/mike.builder/0xdef456",
+  //       isPostedToFarcaster: true,
+  //     },
+  //     {
+  //       id: 3,
+  //       author: "0x2468...1357",
+  //       authorName: "alex.crypto",
+  //       content: "Grateful for finally paying off my student loans!",
+  //       timestamp: Date.now() - 10800000,
+  //       totalTips: "15.7",
+  //       tipCount: 12,
+  //       farcasterHash: "0x789ghi",
+  //       isTrending: true,
+  //       avatar: "🎯",
+  //       farcasterUrl: "https://warpcast.com/alex.crypto/0x789ghi",
+  //       isPostedToFarcaster: true,
+  //     },
+  //   ],
+  //   [],
+  // );
+
   const mockPosts = useMemo(
     () => [
       {
@@ -137,6 +185,9 @@ export default function App() {
         avatar: "🌟",
         farcasterUrl: "https://warpcast.com/sarah.eth/0xabc123",
         isPostedToFarcaster: true,
+        mediaUrl: "https://source.unsplash.com/random/600x400?money", // image
+        // mediaType: "image",
+        mediaType: "image" as const,
       },
       {
         id: 2,
@@ -151,6 +202,8 @@ export default function App() {
         avatar: "🚀",
         farcasterUrl: "https://warpcast.com/mike.builder/0xdef456",
         isPostedToFarcaster: true,
+        mediaUrl: "https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif", // image
+        mediaType: "video" as const,
       },
       {
         id: 3,
@@ -165,6 +218,9 @@ export default function App() {
         avatar: "🎯",
         farcasterUrl: "https://warpcast.com/alex.crypto/0x789ghi",
         isPostedToFarcaster: true,
+        mediaUrl: "https://www.w3schools.com/html/mov_bbb.mp4", // sample video
+        mediaType: "video" as const,
+        // mediaType: "video",
       },
     ],
     [],
@@ -175,7 +231,7 @@ export default function App() {
     getUserAddress();
     setPosts(mockPosts);
     setUserStats({ totalEarned: 47.3, totalTipped: 23.8, postsCount: 12 });
-  }, []);
+  }, [mockPosts, getUserAddress]);
 
   useEffect(() => {
     if (connected) {
@@ -235,7 +291,15 @@ export default function App() {
     }
   };
 
-  const createPost = async () => {
+  const createPost = async (
+    mediaUrl?: string,
+    mediaType?: "image" | "video",
+  ) => {
+    if (!mediaUrl || !mediaType) {
+      console.warn("Missing mediaUrl or mediaType");
+      return;
+    }
+
     let farcasterHash = "";
     let farcasterUrl = "";
     let isPostedToFarcaster = false;
@@ -270,6 +334,10 @@ export default function App() {
       avatar: "✨",
       farcasterUrl: farcasterUrl || "",
       isPostedToFarcaster: isPostedToFarcaster,
+      // ✅ Add these:
+
+      mediaUrl,
+      mediaType,
     };
 
     setTimeout(() => {
@@ -404,15 +472,6 @@ export default function App() {
                 <div className="bg-white rounded-xl shadow-md p-6">
                   <h2 className="text-xl font-semibold mb-4 text-gray-900">
                     Profile Overview
-                    {/* // Add the button in your UI in the header */}
-                    after the close button
-                    <button
-                      type="button"
-                      onClick={handleViewProfile}
-                      className="cursor-pointer bg-transparent font-semibold text-sm pl-2"
-                    >
-                      PROFILE
-                    </button>
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-gradient-to-r from-green-400 to-blue-500 rounded-lg p-4 text-white">

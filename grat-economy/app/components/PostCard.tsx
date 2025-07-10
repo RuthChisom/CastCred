@@ -1,5 +1,6 @@
 // components/PostCard.tsx
 import React from "react";
+import Image from "next/image";
 import { Heart, Coins, TrendingUp, Star } from "lucide-react";
 import { SiFarcaster } from "react-icons/si";
 import { PostCardProps } from "../types/index";
@@ -50,6 +51,52 @@ const PostCard: React.FC<PostCardProps> = ({
       </div>
 
       <p className="text-gray-800 mb-4 leading-relaxed">{post.content}</p>
+
+      {/* Media Display */}
+      {/* {post.mediaUrl && (
+        <div className="mt-4">
+          {post.mediaType === "image" ? (
+            <img
+              src={post.mediaUrl}
+              alt="Post media"
+              className="rounded-lg max-h-60 mx-auto"
+            />
+          ) : (
+            <video
+              src={post.mediaUrl}
+              controls
+              className="rounded-lg max-h-60 w-full mx-auto"
+            />
+          )}
+        </div>
+      )} */}
+
+      {post.mediaUrl && (
+        <div className="mt-4">
+          {post.mediaType === "image" ? (
+            // <img
+            //   src={post.mediaUrl}
+            //   alt="Post media"
+            //   className="rounded-lg max-h-60 mx-auto"
+            // />
+            <div className="relative w-full h-60 mx-auto rounded-lg overflow-hidden">
+              <Image
+                src={post.mediaUrl}
+                alt="Post media"
+                layout="fill"
+                objectFit="contain"
+                className="rounded-lg"
+              />
+            </div>
+          ) : (
+            <video
+              src={post.mediaUrl}
+              controls
+              className="rounded-lg max-h-60 w-full mx-auto"
+            />
+          )}
+        </div>
+      )}
 
       {/* <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4 text-sm text-gray-600">
