@@ -12,7 +12,7 @@ import {
 //   Avatar,
 //   EthBalance,
 // } from "@coinbase/onchainkit/identity";
-
+import { useViewProfile } from "@coinbase/onchainkit/minikit";
 import Sidebar from "./components/Sidebar";
 // import WalletConnect from "@/components/WalletConnect";
 import CreatePost from "./components/CreatePost";
@@ -42,6 +42,14 @@ import {
 // import { Features } from "./components/DemoComponents";
 
 export default function App() {
+  // Add the hook
+  const viewProfile = useViewProfile();
+
+  // Add the handler function
+  const handleViewProfile = () => {
+    viewProfile();
+  };
+
   const {
     setFrameReady,
     isFrameReady,
@@ -396,6 +404,15 @@ export default function App() {
                 <div className="bg-white rounded-xl shadow-md p-6">
                   <h2 className="text-xl font-semibold mb-4 text-gray-900">
                     Profile Overview
+                    {/* // Add the button in your UI in the header */}
+                    after the close button
+                    <button
+                      type="button"
+                      onClick={handleViewProfile}
+                      className="cursor-pointer bg-transparent font-semibold text-sm pl-2"
+                    >
+                      PROFILE
+                    </button>
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-gradient-to-r from-green-400 to-blue-500 rounded-lg p-4 text-white">
