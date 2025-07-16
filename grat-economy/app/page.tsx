@@ -4,7 +4,19 @@ import {
   useMiniKit,
   // useAddFrame,
   // useOpenUrl,
+  useAddFrame,
+  useAuthenticate,
+  useClose,
+  useComposeCast,
+  useIsInMiniApp,
+  useNotification,
+  useOpenUrl,
+  usePrimaryButton,
+  useViewCast,
+  useViewProfile,
 } from "@coinbase/onchainkit/minikit";
+// import { useWallet } from "@coinbase/onchainkit/wallet";
+
 // import {
 //   Name,
 //   Identity,
@@ -36,6 +48,13 @@ import {
   useState,
   //  useCallback
 } from "react";
+import {
+  ConnectWallet,
+  // Wallet,
+  // WalletDropdown,
+  // WalletDropdownDisconnect,
+} from "@coinbase/onchainkit/wallet";
+
 // import { Button } from "./components/DemoComponents";
 // import { Icon } from "./components/DemoComponents";
 // import { Home } from "./components/DemoComponents";
