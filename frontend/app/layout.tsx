@@ -19,8 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
-    description:
-      "Get tipped by sharing your grateful moment.",
+    description: "Get tipped by sharing your grateful moment.",
     other: {
       "fc:frame": JSON.stringify({
         version: "next",
