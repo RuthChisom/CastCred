@@ -6,10 +6,10 @@ interface TagCardProps extends EndorsementTag {
 }
 
 export const TagCard = ({
-  id,
+  // id,
   label,
   icon: Icon,
-  color,
+  // color,
   selected,
   onClick,
 }: TagCardProps) => {

@@ -7,7 +7,7 @@ interface ChannelCardProps extends Channel {
 }
 
 export const ChannelCard = ({
-  id,
+  // id,
   name,
   members,
   growth,

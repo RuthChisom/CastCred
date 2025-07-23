@@ -785,23 +785,23 @@ import { ScheduleTab } from "./ScheduleTab";
 import { Reputation } from "./Reputation";
 
 import {
-  Star,
+  //   Star,
   Users,
-  Award,
-  Calendar,
+  //   Award,
+  //   Calendar,
   Code,
   BookOpen,
   Palette,
   Briefcase,
   Zap,
-  Shield,
-  Bell,
-  Settings,
-  TrendingUp,
-  Search,
-  Send,
-  Clock,
-  Hash,
+  // Shield,
+  // Bell,
+  // Settings,
+  // TrendingUp,
+  // Search,
+  // Send,
+  // Clock,
+  // Hash,
 } from "lucide-react";
 import { Endorsement, ScheduledCast, Channel, EndorsementTag } from "../types";
 

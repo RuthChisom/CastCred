@@ -1,4 +1,8 @@
-import { Send, Hash, Clock } from "lucide-react";
+import {
+  Send,
+  // Hash,
+  //  Clock
+} from "lucide-react";
 import { ChannelCard } from "./ChannelCard";
 import { Channel } from "../types";
 
@@ -40,7 +44,7 @@ export const ScheduleTab = ({
             {/* Cast Content */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                What's on your mind?
+                What &apos s on your mind?
               </label>
               <textarea
                 rows={4}
