@@ -777,7 +777,7 @@
 "use client";
 
 import { useState } from "react";
-import { Header } from "./Header";
+import { Header } from "./header/Header";
 import { Navigation } from "./Navigation";
 import { Dashboard } from "./Dashboard";
 import { EndorseTab } from "./EndorseTab";
