@@ -26,21 +26,9 @@ export const Header = () => {
                 width={400}
                 className="rounded-md"
                 height={400}
-                // style={{
-                //   width: "200px",
-                //   height: "auto",
-                // }}
               />
-
-              {/* <Image
-                src="/castcred.png"
-                alt="cast-cred logo"
-                width="{100px}"
-                height="{1000px}"
-              /> */}
-              {/* <Shield className="w-5 h-5 text-white" /> */}
             </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">
+            <h1 className="text-xl font-serif  font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">
               CastCred
             </h1>
           </Link>
