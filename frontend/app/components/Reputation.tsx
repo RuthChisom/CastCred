@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+// import { Star } from "lucide-react";
 // import { Channel } from "../types";
 
 // interface ChannelCardProps extends Channel {
