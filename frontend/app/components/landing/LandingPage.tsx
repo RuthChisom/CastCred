@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { sdk } from "@farcaster/frame-sdk";
+import { useEffect } from "react";
 import {
   ArrowRight,
   Shield,
@@ -10,6 +14,10 @@ import {
 } from "lucide-react";
 
 export const LandingPage = () => {
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero Section */}
