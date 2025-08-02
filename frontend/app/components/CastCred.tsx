@@ -804,6 +804,8 @@ import {
   // Hash,
 } from "lucide-react";
 import { Endorsement, ScheduledCast, Channel, EndorsementTag } from "../types";
+import { useEffect } from "react";
+import { getCastCredContract } from "@/lib/getContract";
 
 const CastCred = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
