@@ -37,7 +37,8 @@ export const ScheduleTab = ({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-2xl mx-auto">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-8"> */}
         {/* Scheduling Form */}
         <div className="lg:col-span-2">
           <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-700 p-8">
