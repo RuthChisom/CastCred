@@ -1,7 +1,7 @@
 // "use client";
 
 // import Link from "next/link";
-// import { sdk } from "@farcaster/frame-sdk";
+
 // import {
 //   ArrowRight,
 //   Shield,
@@ -172,6 +172,7 @@
 "use client";
 
 import Link from "next/link";
+import { sdk } from "@farcaster/frame-sdk";
 import { useState, useEffect } from "react";
 import {
   ArrowRight,
@@ -192,6 +193,7 @@ import { Badge } from "../../components/ui/badge";
 export function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
 
+  sdk.actions.ready();
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -236,15 +238,13 @@ export function LandingPage() {
               >
                 Sign In
               </Button>
-              <Button
-                size="sm"
-                onClick={() => {
-                  window.location.href = "/dashboard";
-                }}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+
+              <Link
+                href="/dashboard"
+                className="inline-block text-center px-4 py-2 rounded-md text-sm bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
               >
                 Get Started
-              </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -300,13 +300,14 @@ export function LandingPage() {
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-4"
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg font-medium text-white px-4 py-2 transition-colors"
               >
                 Launch App
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              </Link>
+
               <Button
                 size="lg"
                 variant="outline"
@@ -565,13 +566,14 @@ export function LandingPage() {
             their trust and visibility in the decentralized ecosystem.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-4"
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg font-medium text-white px-8 py-2 transition-colors"
             >
               Get Started Free
               <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            </Link>
+
             <Button
               size="lg"
               variant="outline"
@@ -611,7 +613,7 @@ export function LandingPage() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; 2024 CastCred. Built for the decentralized future.</p>
+            <p>&copy; 2025 CastCred. Built for the decentralized future.</p>
           </div>
         </div>
       </footer>
