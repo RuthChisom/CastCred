@@ -1,11 +1,4 @@
-// import { Star } from "lucide-react";
-// import { Channel } from "../types";
 
-// interface ChannelCardProps extends Channel {
-//   selected: boolean;
-//   onClick: () => void;
-// }
-// components/Reputation.tsx
 import { Icon } from "./Icon";
 
 export const Reputation = () => {
